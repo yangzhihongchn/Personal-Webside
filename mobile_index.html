@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>杨志鸿的个人页面</title>
+		<meta name="viewport" content="width=device-width, 
+			initial-scale=1, maximum-scale=1, minimum-scale=1, 
+			shrink-to-fit=no, user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="css/index2.css"/>
+		<script>
+				window.onload = function(){
+					var Cover = document.getElementById("Cover");
+					var Logo = document.getElementById("Logo");
+					var Name = document.getElementById("Name");
+					var ScreenScroll = document.getElementById("ScreenScroll");
+					var Works = document.getElementById("Works");
+					var Title = Works.getElementsByTagName("h1")[0];
+					var WorksList = document.getElementById("works_list");
+					var Li = WorksList.getElementsByTagName("li");
+					var Num = document.getElementsByClassName("Num");
+					var Footer = document.getElementById("footer");
+					var roll = 0;
+					var onOff = true;
+					
+					var docEl = document.documentElement;
+//					获取文档元素,相当于获取html标签的爸爸
+					var width = docEl.getBoundingClientRect().width;
+					var height = docEl.clientHeight;
+//					获取这个元素的宽度,就是屏幕的宽度
+					var rootSize = width/10;
+//					总宽十分之一的宽度
+//                  如果设计图640宽,一般是除以16,1rem=40px;
+//                   	如果设计图750宽,一般除以15,1rem=50px;
+					docEl.style.fontSize = rootSize + 'px';
+//					把十分之一宽度加载给html标签font-size
+					
+					Works.style.display = "none";
+					Footer.style.display = "none";
+					Cover.style.backgroundSize = "100% 100%";
+					WH(width,height,roll)
+					
+					for(var i=0;i<Li.length;i++){
+						Li[i].style.height = height*0.35 + "px";
+						Num[i].style.lineHeight = height*0.35 + "px";
+					}
+					
+					Cover.onclick = function(){
+						roll = 1;
+						Del(width,height);
+						Cover.style.backgroundSize = "100%";
+					}
+					
+					//滑动处理  
+  					var startY;  
+  					document.addEventListener('touchstart',function (ev){
+  						var ev = ev || event;
+      					startY = ev.touches[0].pageY;    
+  					}, false); 
+  					
+  					document.addEventListener('touchend',function (ev){
+  						var ev = ev || event;
+      					var endY;  
+      					endY = ev.changedTouches[0].pageY;
+      					 var dy = startY - endY; 
+      					if(dy > 0){
+      						roll = 1;
+							Del(width,height);
+							Cover.style.backgroundSize = "100%";
+      					}
+      				},false);
+      				
+					function WH(w,h,roll){
+						Logo.style.width = w*0.35 + "px";
+						Logo.style.height = w*0.35 + "px";
+						Logo.style.marginLeft = (w/2) - (w*0.35)/2 + "px";
+						if (roll == 0) {
+							Logo.style.marginTop = (h/2) - (w*0.35)/2 + "px";
+						} else{
+							Logo.style.marginTop = (h) - (w*0.35)/2 + "px";
+						}
+					}
+					
+					function Del(width,height){
+						if(onOff){
+							Cover.removeChild(Name);
+							Cover.removeChild(ScreenScroll);
+							Works.style.display = "block";
+							Footer.style.display = "block";
+							Cover.style.height = parseFloat(height)*0.3 + "px";
+							Logo.style.marginTop = parseFloat(height)*0.3 - (width*0.35)/2 + "px";
+							Title.style.marginTop = parseFloat(height)*0.4 + "px";
+							onOff = false;
+						}else{
+							return;
+						}
+					}
+					
+					var Src = ["https://yangzhihongchn.github.io/Graduation-design/","https://yangzhihongchn.github.io/Loan-Web/",
+					"https://yangzhihongchn.github.io/YueZhi-Web/","https://yangzhihongchn.github.io/KaoLa-Web/","https://yangzhihongchn.github.io/Confession/",
+					"https://yangzhihongchn.github.io/ReturnMoney-Web/","https://yangzhihongchn.github.io/YouHui-app/","https://yangzhihongchn.github.io/Museum/"]
+					
+					for(var i=0;i<Li.length;i++){
+						Li[i].index = i;
+						Li[i].onclick = function(){
+							window.open(Src[this.index]);
+						}
+					}
+					
+				}
+		</script>
+		
+		
+	</head>
+	<body>
+		<div id="Cover">
+			<img id="Logo" src="images/header.png" />
+			<p id="Name">杨志鸿</p>
+			<p id="ScreenScroll">点击或上滑<span id="ScreenScroll_icon"><img src="images/header_icon.png"/></span></p>
+			<a href="index.html" id="change">切换网页版</a>
+		</div>
+		
+		<div id="Works">
+			<h1>个人作品</h1>
+			<hr />
+			<ul id="works_list">
+				<li>
+					<h2 class="Num">01</h2>
+					<p>VHOME家具网</p>
+				</li>
+				<li>
+					<h2 class="Num">02</h2>
+					<p>借贷网</p>
+				</li>
+				<li>
+					<h2 class="Num">03</h2>
+					<p>越知网络</p>
+				</li>
+				<li>
+					<h2 class="Num">04</h2>
+					<p>考拉公考</p>
+				</li>
+				<li>
+					<h2 class="Num">05</h2>
+					<p>css3动画</p>
+				</li>
+				<li>
+					<h2 class="Num">06</h2>
+					<p>活力返钱网首页</p>
+				</li>
+				<li>
+					<h2 class="Num">07</h2>
+					<p>有汇app</p>
+				</li>
+				<li>
+					<h2 class="Num">08</h2>
+					<p>浏览器博物馆</p>
+				</li>
+			</ul>
+			
+			<div class="clear"></div>
+		</div>
+		
+		<div id="footer">
+			<hr />
+			<p>此页面为个人作品展示页，制作人：杨志鸿</p>
+		</div>
+	</body>
+</html>

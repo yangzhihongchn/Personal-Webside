@@ -1,0 +1,137 @@
+*{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	text-decoration: none;
+}
+
+body{
+	font-size: 16px;
+}
+
+#Cover{
+	width: 100%;
+	min-width: 900px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-image: url(../images/Cover_bg.jpg);
+	/*background-position: 0 0;*/
+	/*background-size: 100%;*/
+	background-repeat: no-repeat;
+	z-index: 10000;
+	cursor: pointer;
+}
+
+#change{
+	font-size: 0.75em;
+	position: absolute;
+	top: 2em;
+	right: 2em;
+	color: #FFFFFF;
+}
+
+#Logo{
+	display: block;
+	transition: margin-top 1s;
+}
+
+#Name, #ScreenScroll{
+	width: 100%;
+	color: #fff;
+	text-align: center;
+	margin-top: 0.625em;
+}
+
+#Name{
+	font: bold 2.5em "黑体";
+}
+
+#ScreenScroll{
+	font: 1em "黑体";
+}
+
+#ScreenScroll_icon{
+	display: inline-block;
+	vertical-align: middle;
+	margin-top: 0;
+	animation: do 1s linear infinite;
+}
+
+@-webkit-keyframes do{
+	0{vertical-align: top;}
+	100%{vertical-align: bottom;}
+}
+
+@-moz-keyframes do{
+	0{vertical-align: top;}
+	100%{vertical-align: bottom;}
+}
+
+@-ms-keyframes do{
+	0{vertical-align: top;}
+	100%{vertical-align: bottom;}
+}
+
+#ScreenScroll_icon > img{
+	width: 65%;
+}
+
+#Works{
+	width: 70%;
+	min-width: 630px;
+	display: block;
+	margin: 0 auto;
+}
+
+#Works > h1{
+	font-size: 2em;
+	font-weight: normal;
+}
+
+#works_list{
+	width: 100%;
+}
+
+#works_list > li{
+	width: 23.5%;
+	/*height: 35.32%;*/
+	border: 1px solid #7d76d5;
+	border-radius: 10px;
+	margin-top: 1.25em;
+	margin-left: 1%;
+	float: left;
+	text-align: center;
+	background-image: url(../images/works1.jpg);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	cursor: pointer;
+	position: relative;
+}
+
+#works_list li > h2{
+	font:bold 3.5em "微软雅黑";
+}
+
+#works_list li > p{
+	width: 100%;
+	text-align: center;
+	position: absolute;
+	bottom: 1em;
+	/*left: 0;*/
+	z-index: 100;
+}
+
+.clear{
+	clear: both;
+}
+
+#footer{
+	width: 100%;
+	text-align: center;
+	color: #FFFFFF;
+	background-color: rgba(0,0,0,0.5);
+	font-size: 0.75em;
+	line-height: 3em;
+	margin-top: 3em;
+}

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name=”viewport” content=”width=device-width, initial-scale=1″ />
+		<title>杨志鸿的个人页面</title>
+		<link rel="stylesheet" type="text/css" href="css/index1.css"/>
+		<script type="text/javascript" src="js/jquery-1.10.1.min.js" ></script>
+		
+		<!--[if lt IE 9]>
+		<script src="js/html5shiv.js"></script>
+		<script src="js/respond.min.js"></script>
+		<![endif]-->
+		<script>
+			window.onload = function(){
+				var Cover = document.getElementById("Cover");
+				var Logo = document.getElementById("Logo");
+				var Name = document.getElementById("Name");
+				var ScreenScroll = document.getElementById("ScreenScroll");
+				var Works = document.getElementById("Works");
+				var Title = Works.getElementsByTagName("h1")[0];
+				var WorksList = document.getElementById("works_list");
+				var Li = WorksList.getElementsByTagName("li");
+				var Num = document.getElementsByClassName("Num");
+				var Footer = document.getElementById("footer");
+				var roll = 0;
+				var onOff = true;
+				var W = document.documentElement.clientWidth;
+				var H = document.documentElement.clientHeight;
+				Works.style.display = "none";
+				Footer.style.display = "none";
+				Cover.style.backgroundSize = "100% 100%";
+				Scroll(W,H);
+				
+				
+				Cover.style.height = H +"px";
+				if (W >= 900){
+						WH(W,H,roll);
+					} else{
+						WH(900,H,roll);
+					}
+				for(var i=0;i<Li.length;i++){
+						Li[i].style.height = H*0.40 + "px";
+						Num[i].style.lineHeight = H*0.40 + "px";
+					}
+				
+				Cover.onclick = function(){
+					roll = 1;
+					Del(W,H);
+					Cover.style.backgroundSize = "100%";
+				}
+				
+				window.onresize = function(ev){
+					
+					var w = document.documentElement.clientWidth;
+					var h = document.documentElement.clientHeight;
+					var Ch = Cover.clientHeight;
+//					判断滚轮向上或向下在浏览器中也要考虑兼容性，现在五大浏览器（IE、Opera、Safari、Firefox、Chrome）
+//					中Firefox 使用detail，其余四类使用wheelDelta；两者只在取值上不一致，代表含义一致，
+//					detail与wheelDelta只各取两个 值，detail只取±3，wheelDelta只取±120，其中正数表示为向上，负数表示向下。
+					Cover.onclick = function(){
+						roll = 1;
+						Del(w,h);
+						Cover.style.backgroundSize = "100%";
+					}
+
+					Scroll(w,Ch,roll);
+					if (w >= 900){
+						WH(w,Ch,roll);
+					} else{
+						WH(900,Ch,roll);
+					}
+					
+					for(var i=0;i<Li.length;i++){
+						Li[i].style.height = h*0.40 + "px";
+						Num[i].style.lineHeight = H*0.40 + "px";
+					}
+					
+				}
+				
+				function WH(w,h,roll){
+					Logo.style.width = w*0.1551 + "px";
+					Logo.style.height = w*0.1551 + "px";
+					Logo.style.marginLeft = (w/2) - (w*0.1551)/2 + "px";
+					if (roll == 0) {
+						Logo.style.marginTop = (h/2) - (w*0.1551)/2 + "px";
+					} else{
+						Logo.style.marginTop = (h) - (w*0.1551)/2 + "px";
+					}
+				}
+				
+				function Scroll(width,height){
+					function Fn(ev){
+						var ev = ev || event;
+						if(ev.wheelDelta <0 || ev.detail <0){
+							roll = 1;
+							Del(width,height);
+							Cover.style.backgroundSize = "100%";
+						}
+					
+					}
+				
+					/*注册事件*/
+					if(document.addEventListener){
+	    				document.addEventListener('DOMMouseScroll',Fn,false);
+					}//W3C/Firefox
+					window.onmousewheel=document.onmousewheel=Fn;//IE/Opera/Chrome/Safari
+				}
+				
+				function Del(width,height){
+					if(onOff){
+						Cover.removeChild(Name);
+						Cover.removeChild(ScreenScroll);
+						Works.style.display = "block";
+						Footer.style.display = "block";
+						Cover.style.transition = "1s";
+						Cover.style.height = parseFloat(height)*0.4 + "px";
+						Logo.style.marginTop = parseFloat(height)*0.4 - (width*0.1551)/2 + "px";
+						Title.style.marginTop = parseFloat(height)*0.55 + "px";
+						onOff = false;
+					}else{
+						return;
+					}
+				}
+				
+				var Src = ["https://yangzhihongchn.github.io/Graduation-design/","https://yangzhihongchn.github.io/Loan-Web/",
+				"https://yangzhihongchn.github.io/YueZhi-Web/","https://yangzhihongchn.github.io/KaoLa-Web/","https://yangzhihongchn.github.io/Confession/",
+				"https://yangzhihongchn.github.io/ReturnMoney-Web/","https://yangzhihongchn.github.io/YouHui-app/","https://yangzhihongchn.github.io/Museum/"]
+				
+				for(var i=0;i<Li.length;i++){
+					Li[i].index = i;
+					Li[i].onclick = function(){
+						window.open(Src[this.index]);
+					}
+				}
+				
+			}
+		</script>
+	</head>
+	<body>
+		<div id="Cover">
+			<img id="Logo" src="images/header.png" />
+			<p id="Name">杨志鸿</p>
+			<p id="ScreenScroll">点击或下滑<span id="ScreenScroll_icon"><img src="images/header_icon.png"/></span></p>
+			<a href="mobile_index.html" id="change">切换移动版</a>
+		</div>
+		
+		<div id="Works">
+			<h1>个人作品</h1>
+			<hr />
+			<ul id="works_list">
+				<li>
+					<h2 class="Num">01</h2>
+					<p>VHOME家具网</p>
+				</li>
+				<li>
+					<h2 class="Num">02</h2>
+					<p>借贷网</p>
+				</li>
+				<li>
+					<h2 class="Num">03</h2>
+					<p>越知网络</p>
+				</li>
+				<li>
+					<h2 class="Num">04</h2>
+					<p>考拉公考</p>
+				</li>
+				<li>
+					<h2 class="Num">05</h2>
+					<p>css3动画</p>
+				</li>
+				<li>
+					<h2 class="Num">06</h2>
+					<p>活力返钱网首页</p>
+				</li>
+				<li>
+					<h2 class="Num">07</h2>
+					<p>有汇app</p>
+				</li>
+				<li>
+					<h2 class="Num">08</h2>
+					<p>浏览器博物馆</p>
+				</li>
+			</ul>
+			
+			<div class="clear"></div>
+		</div>
+		
+		<div id="footer">
+			<hr />
+			<p>此页面为个人作品展示页，制作人：杨志鸿</p>
+		</div>
+		
+	</body>
+</html>
